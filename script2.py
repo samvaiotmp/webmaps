@@ -18,6 +18,6 @@ def color(elev):
     return col
 
 for lat,lon,name,elev in zip(df['LAT'],df['LON'],df['NAME'],df['ELEV']):
-    map.simple_marker(location=[lat,lon],popup=name,marker_color=color(elev))
+    map.add_child(folium.Marker(location=[lat,lon],popup=name,icon=folium.Icon(color(elev),icon_color='grey')))
 
-map.create_map(path="test1.html")
+map.save(outfile='test1.html')
