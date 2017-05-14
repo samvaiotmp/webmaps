@@ -1,7 +1,7 @@
 import folium
 import pandas
 
-df=pandas.read_csv("Volcanoes_USA.txt")
+df=pandas.read_csv("Volcanoes-USA.txt")
 
 map=folium.Map(location=[df['LAT'].mean(),df['LON'].mean()],zoom_start=6,tiles='Mapbox bright')
 
