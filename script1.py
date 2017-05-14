@@ -1,7 +1,10 @@
 import folium
-map=folium.Map(location=[45.372,-121.697],zoom_start=12,tiles="Stamen Terrain")
+import pandas
 
-map.simple_marker(location=[45.3288,-121.6625],popup="Mt. Hood Meadows",marker_color="red")
-map.simple_marker(location=[45.3311,-121.7311],popup="Timberlake Lodge",marker_color="green")
+df=pandas.read_csv("Volcanoes-USA.txt")
+map = folium.Map(location=[45.372, -121.697], zoom_start=4, tiles='Stamen Terrain')
+
+for lat,lon,name,elev in zip(df['LAT'],df['LON'],df['NAME'],df['ELEV']):
+    map.simple_marker(location=[lat,lon],popup=name,marker_color='green' if elev in range(0,1000) else 'orange' if elev in range(1000,3000) else 'red' )
 
 map.create_map(path="test1.html")
